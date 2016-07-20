@@ -326,6 +326,9 @@ class PreparedRequest(RequestEncodingMixin, RequestHooksMixin):
 
     def prepare_url(self, url, params):
         """Prepares the given HTTP URL."""
+        if url is None:
+            url = self.url
+        
         #: Accept objects that have string representations.
         #: We're unable to blindly call unicode/str functions
         #: as this will include the bytestring indicator (b'')
